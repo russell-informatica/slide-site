@@ -4,10 +4,11 @@ import Card from '@/components/Card.astro';
 import Navbar from '@/components/Navbar.astro';
 import ThemeToggle from '@/components/ThemeToggle.svelte';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { base } from '@/utils/base';
 
 const siteName = 'Slide Site';
 
-const links = [{ href: '/', label: 'Home' }];
+const links = [{ href: base, label: 'Home' }];
 
 // TODO: replace with your own content.
 const features = [

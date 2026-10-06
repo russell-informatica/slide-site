@@ -1,5 +1,6 @@
 ---
 import '@/styles/app.css';
+import { withBase } from '@/utils/base';
 
 export interface Props {
   title: string;
@@ -20,7 +21,7 @@ const { title, description = '', lang = 'en', robots } = Astro.props;
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     {robots && <meta name="robots" content={robots} />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <script is:inline>
       function getStoredTheme() {
         try {
