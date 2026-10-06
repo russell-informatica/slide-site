@@ -1,11 +1,66 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Button from '@/components/Button.astro';
+import Card from '@/components/Card.astro';
+import Navbar from '@/components/Navbar.astro';
+import ThemeToggle from '@/components/ThemeToggle.svelte';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const siteName = 'Slide Site';
+
+const links = [{ href: '/', label: 'Home' }];
+
+// TODO: replace with your own content.
+const features = [
+  {
+    title: 'Feature one',
+    description: 'Replace this copy with what makes your project worth a look.',
+  },
+  {
+    title: 'Feature two',
+    description: 'Describe a capability, a benefit, or a highlight of your work.',
+  },
+  {
+    title: 'Feature three',
+    description: 'Keep each card short — a headline and one or two sentences.',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title={siteName}
+  description="A clean starting point built with Astro, Tailwind v4 and Svelte 5."
+>
+  <Navbar slot="header" siteName={siteName} links={links}>
+    <ThemeToggle client:load />
+  </Navbar>
+
+  <section class="mx-auto max-w-3xl px-6 py-16 text-center">
+    <h1 class="mb-4 text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-tight tracking-tight">
+      {siteName}
+    </h1>
+    <p class="mb-8 text-xl text-balance text-text-secondary">
+      A clean starting point built with Astro, Tailwind v4 and Svelte 5.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <Button href="https://docs.astro.build" target="_blank" rel="noopener noreferrer">
+        Documentation
+      </Button>
+      <Button href="#features" variant="secondary">Get started</Button>
+    </div>
+  </section>
+
+  <section id="features" class="mx-auto max-w-6xl px-6 pb-20">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((feature) => (
+        <Card>
+          <h2 class="mb-2 text-xl font-bold">{feature.title}</h2>
+          <p class="leading-relaxed text-text-secondary">{feature.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <footer slot="footer" class="border-t border-border px-6 py-8 text-center text-sm text-text-secondary">
+    <p>&copy; {new Date().getFullYear()} {siteName}.</p>
+  </footer>
+</BaseLayout>

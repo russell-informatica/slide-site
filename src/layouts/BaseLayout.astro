@@ -1,0 +1,64 @@
+---
+import '@/styles/app.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+  robots?: string;
+}
+
+const { title, description = '', lang = 'en', robots } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {robots && <meta name="robots" content={robots} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      function getStoredTheme() {
+        try {
+          const cookieTheme = document.cookie.match(/(?:^|;\s*)theme=(dark|light)(?:;|$)/)?.[1];
+          return cookieTheme || localStorage.getItem('theme');
+        } catch {
+          return null;
+        }
+      }
+
+      function applyTheme() {
+        document.documentElement.classList.remove('no-js');
+        const storedTheme = getStoredTheme();
+        if (
+          storedTheme === 'dark' ||
+          (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      applyTheme();
+      if (window.__applyThemeHandler) {
+        document.removeEventListener('astro:after-swap', window.__applyThemeHandler);
+      }
+      window.__applyThemeHandler = applyTheme;
+      document.addEventListener('astro:after-swap', window.__applyThemeHandler);
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <slot name="header" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
