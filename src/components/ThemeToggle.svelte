@@ -10,6 +10,7 @@ $effect(() => {
 function toggle() {
   isDark = !isDark;
   document.documentElement.classList.toggle('dark', isDark);
+  document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
   const theme = isDark ? 'dark' : 'light';
 
   // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API lacks broad browser support
@@ -29,11 +30,8 @@ function toggle() {
   aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
   type="button"
 >
-  {#if isDark}
-    <Sun size={20} />
-  {:else}
-    <Moon size={20} />
-  {/if}
+  <span class="theme-icon theme-icon-sun"><Sun size={20} /></span>
+  <span class="theme-icon theme-icon-moon"><Moon size={20} /></span>
 </button>
 
 <style>
@@ -53,5 +51,25 @@ function toggle() {
   .theme-toggle:hover {
     background: var(--color-bg-secondary);
     border-color: var(--color-border-secondary);
+  }
+
+  /* Both icons are always rendered so the server output and the hydrated
+     output are identical (no swap after hydration). The visible icon is
+     chosen by the `.dark` class, which the inline <head> script applies
+     before the first paint. */
+  .theme-icon {
+    display: inline-flex;
+  }
+
+  .theme-icon-sun {
+    display: none;
+  }
+
+  :global(html.dark) .theme-icon-sun {
+    display: inline-flex;
+  }
+
+  :global(html.dark) .theme-icon-moon {
+    display: none;
   }
 </style>

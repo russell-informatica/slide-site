@@ -1,5 +1,8 @@
 ---
 import '@/styles/app.css';
+import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import inter600 from '@fontsource/inter/files/inter-latin-600-normal.woff2?url';
+import inter700 from '@fontsource/inter/files/inter-latin-700-normal.woff2?url';
 import { withBase } from '@/utils/base';
 
 export interface Props {
@@ -22,6 +25,11 @@ const { title, description = '', lang = 'en', robots } = Astro.props;
     {description && <meta name="description" content={description} />}
     {robots && <meta name="robots" content={robots} />}
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <!-- Preload the above-the-fold Inter weights so the `font-display: swap`
+         fallback is replaced before/around the first paint (avoids the FOUT). -->
+    <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin />
     <script is:inline>
       function getStoredTheme() {
         try {
@@ -33,16 +41,18 @@ const { title, description = '', lang = 'en', robots } = Astro.props;
       }
 
       function applyTheme() {
-        document.documentElement.classList.remove('no-js');
+        const root = document.documentElement;
         const storedTheme = getStoredTheme();
-        if (
+        const isDark =
           storedTheme === 'dark' ||
-          (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+          (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        root.classList.toggle('dark', isDark);
+        root.classList.remove('no-js');
+        // Keep the browser's own UI (canvas, scrollbars, form controls) in sync
+        // with the chosen theme before the first paint. Relying on the CSS
+        // `color-scheme: light dark` declaration makes the UA follow the OS
+        // preference instead, which flashes when OS and chosen theme disagree.
+        root.style.colorScheme = isDark ? 'dark' : 'light';
       }
 
       applyTheme();

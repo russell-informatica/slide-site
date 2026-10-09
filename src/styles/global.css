@@ -12,8 +12,13 @@
   }
 
   html {
-    color-scheme: light dark;
+    color-scheme: light;
+    background-color: var(--color-bg);
     scroll-behavior: smooth;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
