@@ -1,33 +1,19 @@
 ---
 import Card from '@/components/Card.astro';
-import Navbar from '@/components/Navbar.astro';
-import ThemeToggle from '@/components/ThemeToggle.svelte';
-import { SECTIONS, SITE_DESCRIPTION, SITE_NAME, navLinks } from '@/consts';
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SECTIONS, SITE_DESCRIPTION, SITE_NAME } from '@/consts';
+import PageLayout from '@/layouts/PageLayout.astro';
 import { withBase } from '@/utils/base';
 
 const siteName = SITE_NAME;
-const links = navLinks;
 ---
 
-<BaseLayout title={siteName} description={SITE_DESCRIPTION}>
-  <Navbar slot="header" siteName={siteName} links={links}>
-    <ThemeToggle client:load />
-  </Navbar>
-
-  <section id="sezioni" class="mx-auto max-w-6xl px-6 py-12">
-    <h1 class="mb-6 text-3xl font-extrabold tracking-tight sm:text-4xl">Sezioni</h1>
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {SECTIONS.map((section) => (
-        <Card href={withBase(`/${section.slug}`)}>
-          <h2 class="mb-2 text-xl font-bold">{section.label}</h2>
-          <p class="leading-relaxed text-text-secondary">Slide e materiali per {section.label}.</p>
-        </Card>
-      ))}
-    </div>
-  </section>
-
-  <footer slot="footer" class="border-t border-border px-6 py-8 text-center text-sm text-text-secondary">
-    <p>&copy; {new Date().getFullYear()} {siteName}.</p>
-  </footer>
-</BaseLayout>
+<PageLayout title="Sezioni" documentTitle={siteName} description={SITE_DESCRIPTION}>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {SECTIONS.map((section) => (
+      <Card href={withBase(`/${section.slug}`)}>
+        <h2 class="mb-2 text-xl font-bold">{section.label}</h2>
+        <p class="leading-relaxed text-text-secondary">Slide e materiali per {section.label}.</p>
+      </Card>
+    ))}
+  </div>
+</PageLayout>

@@ -17,8 +17,15 @@ export interface Slide {
   description?: string;
   /** Optional display date, e.g. "2026-09-15". */
   date?: string;
-  /** Optional tags rendered as small chips. */
+  /** Optional tags rendered as badges in the card footer. */
   tags?: string[];
   /** Optional extra metadata rendered as a definition list. */
   meta?: SlideMeta[];
+  /**
+   * Optional difficulty from 0 to 5, rendered as stars in the card footer.
+   * Values outside the range are clamped.
+   */
+  difficulty?: number;
+  /** Optional table of contents shown as a collapsible preview. */
+  toc?: string[];
 }
