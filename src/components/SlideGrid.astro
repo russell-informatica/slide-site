@@ -4,15 +4,20 @@ import { cn } from '../utils/cn';
 import SlideCard from './SlideCard.astro';
 
 export interface Props {
-  /** Deck cards to render in a responsive grid. */
+  /** Deck cards to render. They grow to fill each row and wrap as needed. */
   slides: Slide[];
-  /** Extra classes for the grid (e.g. to change columns or spacing). */
+  /** Extra classes for the flex container (e.g. to change gap or min width). */
   class?: string;
 }
 
 const { slides, class: className } = Astro.props;
 ---
 
-<div class={cn('grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3', className)}>
-  {slides.map((slide) => <SlideCard {...slide} />)}
+<div class={cn('flex flex-wrap gap-6', className)}>
+  {slides.map((slide) => (
+    <SlideCard
+      {...slide}
+      class="min-w-[min(100%,17rem)] grow basis-[17rem]"
+    />
+  ))}
 </div>
