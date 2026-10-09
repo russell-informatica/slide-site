@@ -54,10 +54,10 @@ const { title, description = '', lang = 'en', robots } = Astro.props;
     </script>
     <slot name="head" />
   </head>
-  <body>
+  <body class="flex min-h-dvh flex-col">
     <a href="#main" class="skip-link">Skip to content</a>
     <slot name="header" />
-    <main id="main">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <slot name="footer" />

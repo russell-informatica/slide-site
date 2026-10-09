@@ -32,9 +32,9 @@ function normalizePath(path: string): string {
             <a
               href={link.href}
               class:list={[
-                'text-sm font-medium text-text-secondary no-underline px-3 py-1.5 rounded-[var(--radius-lg)] transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:text-text hover:bg-bg-secondary hover:shadow-sm',
+                'text-sm font-medium text-text-secondary no-underline px-3 py-1.5 rounded-[var(--radius-lg)] transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:text-text hover:bg-bg-secondary hover:shadow-(--shadow-sm)',
                 {
-                  'text-text bg-bg-secondary shadow-sm':
+                  'text-text bg-bg-secondary shadow-(--shadow-sm)':
                     normalizePath(currentPath) === normalizePath(link.href),
                 },
               ]}

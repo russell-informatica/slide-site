@@ -1,0 +1,51 @@
+---
+import SectionLayout from '@/layouts/SectionLayout.astro';
+import type { Slide } from '@/types';
+
+// One object per slide deck. Duplicate this page for each class/project and
+// replace the placeholders below. Remember to add a matching entry to
+// SECTIONS in `src/consts.ts`.
+// TODO: replace with your own content.
+const slides: Slide[] = [
+  {
+    title: 'Introduzione al corso',
+    description: 'Panoramica degli obiettivi, del programma e degli strumenti che useremo.',
+    href: 'https://example.com/slides/introduzione',
+    date: '2026-09-15',
+    tags: ['Introduzione'],
+    meta: [
+      { label: 'Autore', value: 'M. Rossi' },
+      { label: 'Lezione', value: '1' },
+    ],
+  },
+  {
+    title: 'Concetti fondamentali',
+    description: 'I concetti chiave su cui costruiremo il resto del corso.',
+    href: 'https://example.com/slides/concetti',
+    date: '2026-09-22',
+    tags: ['Teoria'],
+    meta: [
+      { label: 'Autore', value: 'M. Rossi' },
+      { label: 'Lezione', value: '2' },
+    ],
+  },
+  {
+    title: 'Esercitazione pratica',
+    description: 'Attività guidata da svolgere in aula.',
+    href: 'https://example.com/slides/esercitazione',
+    date: '2026-09-29',
+    tags: ['Laboratorio'],
+    meta: [
+      { label: 'Autore', value: 'M. Rossi' },
+      { label: 'Lezione', value: '3' },
+    ],
+  },
+];
+---
+
+<SectionLayout
+  eyebrow="Classe"
+  title="Esempio"
+  description="Slide e materiali per questa classe. Clicca una scheda per aprire le slide."
+  slides={slides}
+/>
