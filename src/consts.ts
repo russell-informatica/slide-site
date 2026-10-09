@@ -15,7 +15,10 @@ export interface Section {
  * Sections shown in the top bar. Add an entry here and create the matching
  * page in `src/pages/<slug>.astro` (see `esempio.astro`).
  */
-export const SECTIONS: Section[] = [{ slug: 'prime', label: 'Prime' }];
+export const SECTIONS: Section[] = [
+  { slug: 'prime', label: 'Prime' },
+  { slug: 'seconde', label: 'Seconde' },
+];
 
 /** Navigation links shared by every page. */
 export const navLinks = [

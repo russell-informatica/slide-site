@@ -1,0 +1,69 @@
+---
+import Separator from '@/components/Separator.astro';
+import SlideGrid from '@/components/SlideGrid.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import type { Slide } from '@/types';
+
+const lessonSlides: Slide[] = [
+  {
+    title: 'Ripasso Python',
+    description:
+      'Ripasso dei concetti fondamentali di Python',
+    href: 'https://russell-informatica.github.io/seconde/1-introduzione-python/',
+    date: 'Settembre 2026',
+    difficulty: 2,
+    tags: ['ripasso', 'python'],
+    meta: [
+      { label: 'Autore', value: 'Mattia Marini' },
+      { label: 'Unità', value: '1' },
+    ],
+    toc: [
+      'Variabili e tipi',
+      'Operatori aritmetici, di confronto e logici',
+      'Condizioni if / elif / else',
+      'Cicli for e while',
+      'Stringhe',
+      'Liste',
+      'Esercizi',
+    ],
+  },
+  {
+    title: 'Esercizi Python',
+    description: 'Raccolta di esercizi con liste e stringhe in Python.',
+    href: 'https://russell-informatica.github.io/seconde/2-esercizi-python/',
+    date: 'Ottobre 2026',
+    difficulty: 3,
+    tags: ['esercizi', 'python', 'liste', 'stringhe'],
+    meta: [
+      { label: 'Autore', value: 'Mattia Marini' },
+      { label: 'Unità', value: '2' },
+    ],
+    toc: ['Raggruppamento anagrammi', 'Battaglia navale', 'ASCII art'],
+  },
+];
+
+const extra: Slide[] = [
+  {
+    title: 'Uso vscode.dev',
+    description: 'Tutorial per usare l\'editor di codice vscode.dev direttamente dal browser',
+    href: 'https://russell-informatica.github.io/extra-slides/vscode-web/',
+    date: 'Settembre 2026',
+    tags: ['guide', 'extra'],
+    toc: [
+      'Installazione estensioni',
+      'Sincronizzazione workspace',
+      'Primo programma',
+    ],
+  },
+];
+---
+
+<PageLayout
+  eyebrow="Materiale didattico"
+  title="Classi seconde"
+  description="Slides, materiali e link dedicati alle classi seconde. Clicca una scheda per aprire le slide."
+>
+  <SlideGrid slides={lessonSlides} />
+  <Separator label="Extra" />
+  <SlideGrid slides={extra} />
+</PageLayout>
