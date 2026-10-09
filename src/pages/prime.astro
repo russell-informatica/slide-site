@@ -1,0 +1,85 @@
+---
+import Separator from '@/components/Separator.astro';
+import SlideGrid from '@/components/SlideGrid.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import type { Slide } from '@/types';
+
+// One object per slide deck. Duplicate this page for each class/project and
+// replace the placeholders below. Remember to add a matching entry to
+// SECTIONS in `src/consts.ts`.
+// TODO: replace with your own content.
+const lessonSlides: Slide[] = [
+  {
+  title: 'Il robot: come ragiona un pc?',
+    description: 'Materiale extra per chi vuole andare oltre il programma.',
+    href: 'https://russell-informatica.github.io/misc/robot-intro/robot-intro.pdf',
+    date: 'Settembre 2026',
+    difficulty: 1,
+    tags: ['intro'],
+    meta: [
+      { label: 'Autore', value: 'Mattia Marini' },
+      { label: 'Unità', value: '1' },
+    ],
+    toc: ['Il robot e le sue istruzioni', 'Algoritmi del robot (percorsi)', 'Accenno a componenti del pc', 'Come legge il codice il pc', 'Accenno a python'],
+  },
+  {
+    title: 'Introduzione a python',
+    description: 'Concetti fondamentali per iniziare a scrivere qualche semplice programmino',
+    href: 'https://russell-informatica.github.io/prime/1-introduzione-python/',
+    date: 'Ottobre 2026',
+    difficulty: 1,
+    tags: ['intro', 'python'],
+    meta: [
+      { label: 'Autore', value: 'Mattia Marini' },
+      { label: 'Unità', value: '2' },
+    ],
+    toc: ['Come legge il codice il pc', 'Le regole d\'oro per programmare', 'I blocchi di costruzione di un programma', 'Variabili, liste, if/elif/else e cicli while'],
+  },
+  {
+    title: 'Esercizi introduttivi in python',
+    description: 'Una collezione di esercizi introduttivi in python',
+    href: 'https://russell-informatica.github.io/prime/2-esercizi-python/',
+    date: 'Ottobre 2026',
+    difficulty: 2,
+    tags: ['esercizi', 'python'],
+    meta: [
+      { label: 'Autore', value: 'Mattia Marini' },
+      { label: 'Unità', value: '2' },
+    ],
+    toc: [
+      'Controlli con if/elif/else',
+      'Ripetere operazioni con i cicli while',
+      'Scorrere liste con cicli while',
+    ],
+  },
+];
+
+const extra: Slide[] = [
+  {
+    title: 'Cheatsheet python',
+    description: 'Collezione di concetti e comandi fondamentali per programmare in python',
+    href: 'https://russell-informatica.github.io/misc/cheatsheet-prime/python-intro.pdf',
+    date: 'Ottobre 2026',
+    // difficulty: ,
+    tags: ['cheatsheet', 'intro', 'python'],
+    toc: [
+    'Variabili',
+      'Liste',
+      'if/elif/else',
+      'Ciclo while',
+      'Errori comuni',
+      'Pattern ricorrenti',
+    ],
+  },
+];
+---
+
+<PageLayout
+  eyebrow="Materiale didattico"
+  title="Classi prime 2"
+  description="Slides, materiali e link dedicati alle classi prime. Clicca una scheda per aprire le slide."
+>
+  <SlideGrid slides={lessonSlides} />
+  <Separator label="Extra" />
+  <SlideGrid slides={extra} />
+</PageLayout>

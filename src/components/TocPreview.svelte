@@ -17,7 +17,7 @@
   <div
     class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-text-secondary"
   >
-    <span>Indice</span>
+    <span>Contenuto</span>
     {#if collapsible}
       <svg
         xmlns="http://www.w3.org/2000/svg"
