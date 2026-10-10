@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "slide-site",
+      "name": "marini-didattica.github.io",
       "dependencies": {
         "@astrojs/svelte": "^9.0.1",
         "@fontsource/inter": "^5.3.0",
