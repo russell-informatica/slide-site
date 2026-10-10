@@ -6,9 +6,7 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   // Deployed as a GitHub Pages project site at
-  // https://russell-informatica.github.io/slide-site/
-  site: 'https://russell-informatica.github.io',
-  base: '/slide-site',
+  site: 'https://marini-didattica.github.io',
   integrations: [svelte()],
   vite: {
     plugins: [tailwindcss()],
