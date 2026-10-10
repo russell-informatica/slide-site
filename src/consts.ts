@@ -1,7 +1,12 @@
 import { withBase } from './utils/base';
 
-export const SITE_NAME = 'Slide Site';
-export const SITE_DESCRIPTION = 'Slide e materiali per le nostre classi e i nostri progetti.';
+const now = new Date();
+const year = now.getFullYear();
+const startYear = now.getMonth() >= 7 ? year : year - 1;
+
+export const A_S = `${startYear}/${startYear + 1}`;
+export const SITE_NAME = 'Marini didattica';
+export const SITE_DESCRIPTION = `Dispense e materiale per lezioni in classe e progetti relativi all'a.s. ${A_S}`;
 
 /** A top-bar section, one per class/project. */
 export interface Section {
